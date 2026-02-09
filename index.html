@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Riffs</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div class="controls">
+    <div class="bar bar-playbar" role="group" aria-label="Playback">
+      <div class="playbar-wrap" id="playbar-wrap" hidden>
+        <span id="time-current" class="playbar-label">0:00</span>
+        <input type="range" id="playbar" class="playbar" min="0" max="100" value="0" step="any" />
+        <span id="time-total" class="playbar-label">0:00</span>
+      </div>
+      <div class="input-group">
+        <label for="file-input" class="btn btn-ghost">File</label>
+        <input type="file" id="file-input" accept="audio/*" hidden />
+        <button type="button" id="mic-btn" class="btn btn-ghost">Mic</button>
+        <button type="button" id="play-pause" class="btn btn-play" disabled>Play</button>
+        <button type="button" id="fullscreen-btn" class="btn btn-ghost" title="Fullscreen (F)">FS</button>
+        <button type="button" id="capture-btn" class="btn btn-ghost" title="Save frame">Capture</button>
+      </div>
+    </div>
+    <div class="bar bar-modes-settings" role="group" aria-label="Modes and settings">
+      <div class="bar-modes" role="group" aria-label="Visualizer mode">
+        <div class="mode-group mode-group-wrap">
+          <button type="button" data-mode="spectrum" class="btn btn-mode active">Spectrum</button>
+          <button type="button" data-mode="radial" class="btn btn-mode">Radial</button>
+          <button type="button" data-mode="particles" class="btn btn-mode">Particles</button>
+          <button type="button" data-mode="fractal" class="btn btn-mode">Fractal</button>
+          <button type="button" data-mode="kaleidoscope" class="btn btn-mode">Kaleidoscope</button>
+          <button type="button" data-mode="waveform" class="btn btn-mode">Waveform</button>
+          <button type="button" data-mode="lissajous" class="btn btn-mode">Lissajous</button>
+          <button type="button" data-mode="orbit" class="btn btn-mode">Orbit</button>
+          <button type="button" data-mode="plasma" class="btn btn-mode">Plasma</button>
+        </div>
+      </div>
+      <div class="bar-settings" role="group" aria-label="Settings">
+        <div class="sensitivity-wrap">
+          <label for="sensitivity" class="control-label">Sensitivity</label>
+          <input type="range" id="sensitivity" class="playbar sensitivity" min="0.1" max="3" step="0.05" value="1" />
+        </div>
+        <div class="theme-wrap">
+          <label for="theme-select-main" class="control-label">Theme</label>
+          <select id="theme-select-main" class="control-select">
+            <option value="default">Default</option>
+            <option value="neon">Neon</option>
+            <option value="monochrome">Monochrome</option>
+          </select>
+        </div>
+        <button type="button" id="demo-btn" class="btn btn-ghost">Demo</button>
+        <div class="advanced-dropdown" id="advanced-wrap">
+          <button type="button" id="advanced-toggle" class="btn btn-ghost btn-dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="advanced-panel">
+            Advanced
+            <span class="dropdown-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="advanced-panel" id="advanced-panel" role="menu" aria-label="Advanced settings">
+            <div class="advanced-row">
+              <label for="fft-size">FFT size</label>
+              <select id="fft-size" class="control-select">
+                <option value="256">256</option>
+                <option value="512" selected>512</option>
+                <option value="1024">1024</option>
+              </select>
+            </div>
+            <div class="advanced-row">
+              <label for="smoothing">Smoothing</label>
+              <input type="range" id="smoothing" class="playbar sensitivity" min="0" max="1" step="0.05" value="0.7" />
+            </div>
+            <div class="advanced-row">
+              <label for="perf-toggle">Performance</label>
+              <input type="checkbox" id="perf-toggle" class="control-checkbox" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <canvas id="canvas"></canvas>
+  <audio id="audio-el" crossorigin="anonymous"></audio>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
